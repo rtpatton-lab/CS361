@@ -21,7 +21,7 @@ files.download('sports_teams_city_state.csv')
 import tkinter as tk
 from tkinter import *
 import pandas as pd
-#from pandas import DataFrame
+from pandas import DataFrame
 import requests
 #from google.colab import files
 
@@ -34,19 +34,18 @@ entry1 = tk.Entry(root)  # create the entry box
 canvas1.create_window(150, 100, window=entry1)
 
 
-def insert_number():  # add a function/command to be called by the button (i.e., button1 below)
-    global x1  # add 'global' before the variable x1, so that you can use that variable outside of the command/function if ever needed
-    x1 = str(entry1.get())  # store the data input by the user as a variable x1
+def insert_text():  # add a function/command to be called by the button (i.e., button1 below)
 
-    PATH = r'/Users/ryanpatton/CS361/sports_teams_city_state' + x1 + '.csv'
-    read_cities = pd.read_csv(PATH)  # read the csv file using the 'PATH' varibale
-    df = DataFrame(read_cities,
-                   columns=['Metropolitan area', 'Country', 'Pop.rank', 'Population (2016 est.)[8]', 'B4', 'NFL', 'MLB', 'NBA', 'NHL', 'B6', 'MLS', 'CFL'])  # assign column names
+    PATH = r'C:/Users/young/PycharmProjects/sports_teams_city_state.csv'
+    read_cities = pd.read_csv(PATH)  # read the csv file using the 'PATH' variable
+    df = read_cities.loc[read_cities['Metropolitan area'].isin(['Austin'])].values[0]
+    #df = DataFrame(read_cities,
+    #               columns=['Metropolitan area', 'Country', 'Pop.rank', 'Population (2016 est.)[8]', 'B4', 'NFL', 'MLB', 'NBA', 'NHL', 'B6', 'MLS', 'CFL'])  # assign column names
     print(df)
 
 
-button1 = tk.Button(root, text='Input City/State to import file', command=insert_number, bg='green',
-                    fg='white')  # button to call the 'insert_number' command above
+button1 = tk.Button(root, text='Input City/State to import file', command=insert_text, bg='green',
+                    fg='white')  # button to call the 'insert_text' command above
 canvas1.create_window(150, 140, window=button1)
 
 root.mainloop()
