@@ -1,3 +1,5 @@
+"""
+
 import pandas as pd
 from pandas import DataFrame
 import requests
@@ -11,8 +13,17 @@ df.to_csv("sports_teams_city_state.csv", index=False)
 
 files.download('sports_teams_city_state.csv')
 
+"""
+
 
 # GUI portion
+
+import tkinter as tk
+from tkinter import *
+import pandas as pd
+#from pandas import DataFrame
+import requests
+#from google.colab import files
 
 root = tk.Tk()
 
@@ -27,14 +38,14 @@ def insert_number():  # add a function/command to be called by the button (i.e.,
     global x1  # add 'global' before the variable x1, so that you can use that variable outside of the command/function if ever needed
     x1 = str(entry1.get())  # store the data input by the user as a variable x1
 
-    PATH = r'sports_teams_city_state.csv'
+    PATH = r'/Users/ryanpatton/CS361/sports_teams_city_state' + x1 + '.csv'
     read_cities = pd.read_csv(PATH)  # read the csv file using the 'PATH' varibale
     df = DataFrame(read_cities,
                    columns=['Metropolitan area', 'Country', 'Pop.rank', 'Population (2016 est.)[8]', 'B4', 'NFL', 'MLB', 'NBA', 'NHL', 'B6', 'MLS', 'CFL'])  # assign column names
     print(df)
 
 
-button1 = tk.Button(root, text='Input City to import file', command=insert_number, bg='green',
+button1 = tk.Button(root, text='Input City/State to import file', command=insert_number, bg='green',
                     fg='white')  # button to call the 'insert_number' command above
 canvas1.create_window(150, 140, window=button1)
 
