@@ -17,7 +17,7 @@ canvas1.create_window(150, 100, window=entry1)
 
 def insert_text():  # add a function/command to be called by the button (i.e., button1 below)
 
-    PATH = r'sports_teams_city_state.csv'
+    PATH = r'sports_teams_city.csv'
     read_cities = pd.read_csv(PATH)  # read the csv file using the 'PATH' variable
     df = read_cities.loc[read_cities['Metropolitan area'].isin(['Austin'])].values[0]
     #df = DataFrame(read_cities,
