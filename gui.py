@@ -10,12 +10,15 @@ root = tk.Tk()
 
 root.title("Sports Teams Searched by City")
 
+# this section of code specifies the size of the terminal window,
+# and the size of the data entry area and output area
+
 root.geometry("300x300")
 
-canvas1 = tk.Canvas(root, width=300, height=300)  # create the canvas
+canvas1 = tk.Canvas(root, width=300, height=300)
 canvas1.pack()
 
-top_frame_entry = tk.Entry(root)  # create the entry box
+top_frame_entry = tk.Entry(root)
 canvas1.create_window(150, 100, window=top_frame_entry)
 top_frame_entry.pack(side="top", fill="x", padx=50, pady=10)
 
@@ -23,8 +26,11 @@ bottom_frame_entry = Frame(root, bg="grey")
 bottom_frame_entry.pack(side="top", fill="x", padx=10, pady=10)
 
 
-def insert_text():  # add a function/command to be called by the button (i.e., button1 below)
-
+def insert_text():
+    """
+    this function reads csv file from working_scraper and creates functionality of GUI
+    to interact with csv data
+    """
     PATH = r'sports_teams_city.csv'
     read_cities = pd.read_csv(PATH)  # read the csv file using the 'PATH' variable
     df = read_cities.loc[read_cities['Metropolitan area'].isin(['Austin'])].values[0]
@@ -43,5 +49,8 @@ answer = Text(bottom_frame_entry, font=("Arial", 18), fg="red",
               width=55, height=20, bd=5, yscrollcommand=scroll.set)
 answer.pack(side="left", fill="y")
 scroll.pack(side="left", fill="y")
+
+lab = Label(frame,text=yourData)
+lab.pack()
 
 root.mainloop()
